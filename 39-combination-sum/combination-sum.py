@@ -6,30 +6,20 @@ class Solution:
         n = len(nums)
 
         def dfs(i):
-            nonlocal res
             nonlocal amount
-            nonlocal n
-            nonlocal stack
 
-            if i == n:
-
-                return
-            elif amount < 0:
-
-                return
-
-            elif amount == 0:
-                # print(stack)
+            if amount == 0:
                 res.append(stack.copy())
                 return
-            else:
-                amount -= nums[i]
-                stack.append(nums[i])
-                dfs(i)
-                amount += nums[i]
-                stack.pop()
-                dfs(i + 1)
+            if i == n or amount < 0:
+                return
+
+            stack.append(nums[i])
+            amount -= nums[i]
+            dfs(i)
+            amount += nums[i]
+            stack.pop()
+            dfs(i + 1)
 
         dfs(0)
-
         return res
