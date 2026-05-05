@@ -1,4 +1,5 @@
 class Solution:
+    @lru_cache(None)
     def fastPow(self, x, n):
         print(x, n)
         if n == 1:
